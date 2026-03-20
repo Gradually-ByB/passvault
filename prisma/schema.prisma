@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Admin {
+  id       String @id @default(cuid())
+  username String @unique
+  password String // bcrypt hash
+}
+
+model Member {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  accounts  Account[]
+  createdAt DateTime  @default(now())
+}
+
+model Account {
+  id        String   @id @default(cuid())
+  siteName  String
+  username  String
+  password  String
+  member    Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  memberId  String
+  createdAt DateTime @default(now())
+}
