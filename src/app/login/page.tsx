@@ -38,7 +38,7 @@ export default function LoginPage() {
         const err = await res.json()
         setError(err.message || '정보가 올바르지 않습니다. 다시 시도해주세요.')
       }
-    } catch (err) {
+    } catch {
       setError('서버와 통신하는 중 오류가 발생했습니다.')
     } finally {
       setLoading(false)

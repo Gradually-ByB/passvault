@@ -9,7 +9,9 @@ export default async function DashboardPage() {
     redirect('/login')
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let initialMembers: any[] = []
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let initialAccounts: any[] = []
 
   try {

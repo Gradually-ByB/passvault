@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -99,6 +99,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
     }
   }, [isMemberDialogOpen])
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const fetchMembers = async () => {
     // Only fetch for updates/refreshes manually triggered
     try {
@@ -107,7 +108,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
         const data = await res.json()
         setMembers(data)
       }
-    } catch (err) {
+    } catch {
       toast.error('팀원 목록을 가져오는데 실패했습니다.')
     }
   }
@@ -122,7 +123,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
         const data = await res.json()
         setAccountsMap(prev => ({ ...prev, [memberId]: data }))
       }
-    } catch (err) {
+    } catch {
       toast.error('계정 목록을 가져오는데 실패했습니다.')
     } finally {
       setFetchingAccounts(prev => ({ ...prev, [memberId]: false }))
@@ -143,7 +144,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
         setMemberSuccess('팀원이 추가되었습니다.')
         setNewMemberName('')
       }
-    } catch (err) {
+    } catch {
       setMemberError('팀원 추가에 실패했습니다.')
     }
   }
@@ -161,7 +162,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
       } else {
         toast.error('팀원 삭제에 실패했습니다.')
       }
-    } catch (err) {
+    } catch {
       toast.error('팀원 삭제에 실패했습니다.')
     }
   }
@@ -193,7 +194,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
         setNewAccount({ siteName: '', username: '', password: '' })
         setAccountError(null)
       }
-    } catch (err) {
+    } catch {
       setAccountError('계정 저장에 실패했습니다.')
     }
   }
@@ -223,7 +224,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
         setEditSuccess('수정되었습니다.')
         setEditError(null)
       }
-    } catch (err) {
+    } catch {
       setEditError('계정 수정에 실패했습니다.')
     }
   }
@@ -240,7 +241,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
         setMembers(prev => prev.map(m => m.id === memberId ? { ...m, _count: { accounts: m._count.accounts - 1 } } : m))
         toast.success('삭제되었습니다.')
       }
-    } catch (err) {
+    } catch {
       toast.error('삭제에 실패했습니다.')
     }
   }

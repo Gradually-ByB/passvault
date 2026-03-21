@@ -16,7 +16,7 @@ export async function GET() {
       orderBy: { name: 'asc' }
     })
     return NextResponse.json(members)
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch members' }, { status: 500 })
   }
 }
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       data: { name }
     })
     return NextResponse.json(member)
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to create member' }, { status: 500 })
   }
 }
@@ -53,7 +53,7 @@ export async function DELETE(request: Request) {
     await prisma.member.delete({ where: { id: memberId } })
 
     return NextResponse.json({ success: true })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to delete member' }, { status: 500 })
   }
 }

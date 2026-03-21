@@ -17,7 +17,7 @@ export async function GET(request: Request) {
       orderBy: { siteName: 'asc' }
     })
     return NextResponse.json(accounts)
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch accounts' }, { status: 500 })
   }
 }
@@ -37,7 +37,7 @@ export async function POST(request: Request) {
       data: { siteName, username, password, memberId }
     })
     return NextResponse.json(account)
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to create account' }, { status: 500 })
   }
 }
@@ -54,7 +54,7 @@ export async function DELETE(request: Request) {
   try {
     await prisma.account.delete({ where: { id } })
     return NextResponse.json({ success: true })
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to delete account' }, { status: 500 })
   }
 }
@@ -75,7 +75,7 @@ export async function PUT(request: Request) {
       data: { siteName, username, password }
     })
     return NextResponse.json(account)
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to update account' }, { status: 500 })
   }
 }
