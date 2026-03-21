@@ -345,9 +345,9 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                         <p className="text-xs font-semibold text-emerald-600 leading-tight tracking-tight">{memberSuccess}</p>
                       </div>
                     )}
-                    <DialogFooter className="flex gap-2 sm:gap-2">
-                      <Button variant="ghost" onClick={() => setIsMemberDialogOpen(false)} className="flex-1 rounded-xl h-11 border border-[#FFEDD5] hover:bg-[#FFF7ED]">닫기</Button>
-                      <Button onClick={handleCreateMember} className="bg-gradient-to-r from-[#FF7A6E] to-[#FFA73D] hover:from-[#FF6A5E] hover:to-[#FF972D] text-white border-none flex-1 rounded-xl h-11">추가</Button>
+                    <DialogFooter className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-2 mt-4">
+                      <Button variant="ghost" onClick={() => setIsMemberDialogOpen(false)} className="w-full sm:flex-1 rounded-2xl h-14 border border-[#FFEDD5] hover:bg-[#FFF7ED] text-base font-semibold">닫기</Button>
+                      <Button onClick={handleCreateMember} className="w-full sm:flex-1 rounded-2xl h-14 bg-gradient-to-r from-[#FF7A6E] to-[#FFA73D] hover:from-[#FF6A5E] hover:to-[#FF972D] text-white border-none text-base font-semibold shadow-md">추가</Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
@@ -543,9 +543,9 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                         <p className="text-xs font-semibold text-emerald-600 leading-tight tracking-tight">{accountSuccess}</p>
                       </div>
                     )}
-                    <DialogFooter className="flex gap-2 sm:gap-2">
-                      <Button variant="ghost" onClick={() => setIsAccountDialogOpen(false)} className="flex-1 rounded-xl h-11 border border-[#FFEDD5] hover:bg-[#FFF7ED]">닫기</Button>
-                      <Button onClick={handleCreateAccount} className="bg-gradient-to-r from-[#FF7A6E] to-[#FFA73D] hover:from-[#FF6A5E] hover:to-[#FF972D] text-white border-none flex-1 rounded-xl h-11">저장</Button>
+                    <DialogFooter className="flex flex-col-reverse sm:flex-row gap-3 sm:gap-2 mt-4">
+                      <Button variant="ghost" onClick={() => setIsAccountDialogOpen(false)} className="w-full sm:flex-1 rounded-2xl h-14 border border-[#FFEDD5] hover:bg-[#FFF7ED] text-base font-semibold">닫기</Button>
+                      <Button onClick={handleCreateAccount} className="w-full sm:flex-1 rounded-2xl h-14 bg-gradient-to-r from-[#FF7A6E] to-[#FFA73D] hover:from-[#FF6A5E] hover:to-[#FF972D] text-white border-none text-base font-semibold shadow-md">저장</Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
