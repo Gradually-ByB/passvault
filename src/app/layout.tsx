@@ -24,10 +24,6 @@ export const metadata: Metadata = {
   title: "환경팀 계정 관리 시스템",
   description: "환경팀 내부 계정 통합 관리 솔루션",
   manifest: "/manifest.json",
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/logo.png",
-  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
