@@ -53,14 +53,6 @@ export default function LoginPage() {
         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-50/60 blur-[120px]" />
       </div>
 
-      {/* Top Badge */}
-      <div className="absolute top-8 z-20 animate-in fade-in slide-in-from-top-4 duration-700">
-        <div className="inline-flex items-center gap-2 px-6 py-2 bg-white/60 backdrop-blur-md rounded-full border border-orange-100/50 shadow-sm text-orange-500 text-sm font-bold">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 border border-white" />
-          환경팀 전용 보안 시스템 · 국제학교지원처
-        </div>
-      </div>
-
       {/* Login Card Container */}
       <div className="relative z-10 w-full max-w-[420px] px-4 animate-in fade-in zoom-in-95 duration-700">
         <Card className="border-none bg-white/95 backdrop-blur-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden rounded-[32px] pt-12">
