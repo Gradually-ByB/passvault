@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -266,19 +267,19 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
   const activeMember = members.find(m => m.id === activeMemberId)
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-950 font-sans text-slate-200">
+    <div className="flex flex-col min-h-screen bg-[#FDFDFD] font-sans text-[#431407]">
       {/* Header */}
-      <header className="h-16 bg-slate-950 sticky top-0 z-10">
+      <header className="h-16 bg-white/80 backdrop-blur-md border-b border-[#FFF7ED] sticky top-0 z-10">
         <div className="max-w-5xl mx-auto px-4 lg:px-8 h-full flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-900/20">
-              <Shield className="w-5 h-5 text-white" />
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center">
+              <Image src="/logo.png" alt="Logo" width={60} height={60} className="object-contain" priority />
             </div>
-            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
+            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-rose-400">
               환경팀 계정 관리
             </h1>
           </div>
-          <Button variant="ghost" size="sm" onClick={handleLogout} className="text-slate-400 hover:text-white hover:bg-slate-800">
+          <Button variant="ghost" size="sm" onClick={handleLogout} className="text-[#9A3412] hover:text-[#431407] hover:bg-[#FFF7ED]">
             <LogOut className="w-4 h-4 mr-2" />
             로그아웃
           </Button>
@@ -290,67 +291,72 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
         <aside className="w-full md:w-60 space-y-6">
           <div className="space-y-6">
             <div className="flex items-center min-h-[44px] px-1">
-              <h2 className="text-xl font-extrabold text-white flex items-baseline gap-2 tracking-tight transform scale-y-[1.2]">
+              <h2 className="text-xl font-extrabold text-[#431407] flex items-baseline gap-2 tracking-tight transform scale-y-[1.2]">
                 <Users className="w-4 h-4" />
                 팀원 관리
               </h2>
             </div>
 
-            <div className="bg-slate-900/40 rounded-2xl overflow-hidden backdrop-blur-sm p-2 pt-4">
+            <div className="bg-white rounded-[24px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#FFF7ED] p-2 pt-4">
               <div className="px-3 mb-4 flex items-center justify-between">
-                <span className="text-sm font-medium text-slate-300">팀원 목록</span>
+                <span className="text-sm font-medium text-[#7C2D12]">팀원 목록</span>
                 <Dialog open={isMemberDialogOpen} onOpenChange={setIsMemberDialogOpen}>
                   <DialogTrigger render={
-                    <Button variant="ghost" size="icon" className="w-8 h-8 text-blue-400 hover:bg-blue-500/10">
+                    <Button variant="ghost" size="icon" className="w-8 h-8 text-orange-500 hover:bg-orange-500/10">
                       <Plus className="w-4 h-4" />
                     </Button>
                   } />
-                  <DialogContent className="bg-slate-900 border-slate-800 text-white" showCloseButton={false}>
+                  <DialogContent className="bg-white border-[#FFEDD5] text-[#431407]" showCloseButton={false}>
                     <DialogHeader>
                       <DialogTitle>팀원 추가</DialogTitle>
                     </DialogHeader>
                     <div className="py-4">
-                      <Label htmlFor="memberName" className="text-slate-300">이름</Label>
-                      <Input
-                        id="memberName"
-                        value={newMemberName}
-                        onChange={(e) => {
-                          setNewMemberName(e.target.value)
-                          setMemberError(null)
-                          setMemberSuccess(null)
-                        }}
-                        placeholder="이름 입력"
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') handleCreateMember()
-                        }}
-                        className="bg-slate-950 border-slate-800 mt-2"
-                      />
+                      <div className="space-y-2.5">
+                        <Label htmlFor="memberName" className="text-sm font-bold text-[#9A3412] tracking-tight ml-1">이름</Label>
+                        <div className="relative group transition-all duration-300 rounded-2xl bg-[#FFF7ED] focus-within:ring-2 focus-within:ring-orange-400/20 focus-within:bg-white focus-within:shadow-sm">
+                          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors text-[#FB923C] group-focus-within:text-orange-500" />
+                          <Input
+                            id="memberName"
+                            value={newMemberName}
+                            onChange={(e) => {
+                              setNewMemberName(e.target.value)
+                              setMemberError(null)
+                              setMemberSuccess(null)
+                            }}
+                            placeholder="이름 입력"
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') handleCreateMember()
+                            }}
+                            className="h-14 pl-12 bg-transparent border-none focus-visible:ring-0 text-[#431407] text-base placeholder:text-[#FDBA74]"
+                          />
+                        </div>
+                      </div>
                     </div>
                     {memberError && (
-                      <div className="mx-4 mt-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
+                      <div className="mx-4 mt-2 p-3 bg-red-50 border border-red-100 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
                         <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
-                        <p className="text-xs font-semibold text-red-400 leading-tight tracking-tight">{memberError}</p>
+                        <p className="text-xs font-semibold text-red-600 leading-tight tracking-tight">{memberError}</p>
                       </div>
                     )}
                     {memberSuccess && (
-                      <div className="mx-4 mt-2 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
+                      <div className="mx-4 mt-2 p-3 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
                         <Shield className="w-4 h-4 text-emerald-500 shrink-0" />
-                        <p className="text-xs font-semibold text-emerald-400 leading-tight tracking-tight">{memberSuccess}</p>
+                        <p className="text-xs font-semibold text-emerald-600 leading-tight tracking-tight">{memberSuccess}</p>
                       </div>
                     )}
                     <DialogFooter className="flex gap-2 sm:gap-2">
-                      <Button variant="ghost" onClick={() => setIsMemberDialogOpen(false)} className="flex-1 rounded-xl h-11 border border-slate-800 hover:bg-slate-800">닫기</Button>
-                      <Button onClick={handleCreateMember} className="bg-blue-600 hover:bg-blue-500 flex-1 rounded-xl h-11">추가</Button>
+                      <Button variant="ghost" onClick={() => setIsMemberDialogOpen(false)} className="flex-1 rounded-xl h-11 border border-[#FFEDD5] hover:bg-[#FFF7ED]">닫기</Button>
+                      <Button onClick={handleCreateMember} className="bg-gradient-to-r from-[#FF7A6E] to-[#FFA73D] hover:from-[#FF6A5E] hover:to-[#FF972D] text-white border-none flex-1 rounded-xl h-11">추가</Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
               </div>
 
               <div className="relative mb-3 px-3">
-                <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-500" />
+                <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#EA580C]" />
                 <Input
                   placeholder="이름 검색..."
-                  className="h-10 pl-9 bg-slate-950/50 border-slate-800/50 text-sm text-white rounded-xl shadow-inner shadow-black/20"
+                  className="h-10 pl-9 bg-[#FDFDFD]/50 border-transparent text-sm text-[#431407] rounded-xl shadow-sm"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -358,7 +364,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
 
               <div className="space-y-1 px-1 max-h-[calc(100vh-250px)] overflow-y-auto custom-scrollbar pb-2">
                 {filteredMembers.length === 0 ? (
-                  <div className="py-8 text-center text-xs text-slate-600">팀원이 없습니다.</div>
+                  <div className="py-8 text-center text-xs text-[#EA580C]">팀원이 없습니다.</div>
                 ) : (() => {
                   const LIMIT = 10
                   const isSearching = searchTerm.trim().length > 0
@@ -378,14 +384,14 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                           className={cn(
                             "w-full text-left px-4 py-3.5 rounded-xl transition-all flex items-center justify-between group relative overflow-hidden focus:outline-none",
                             activeMemberId === member.id
-                              ? "bg-blue-600/10 text-blue-400 ring-1 ring-blue-500/30"
-                              : "text-slate-400 hover:bg-slate-800/40 hover:text-slate-200"
+                              ? "bg-orange-50 text-black shadow-sm ring-1 ring-orange-500/20 font-bold"
+                              : "text-[#1C2434] hover:bg-[#FFF7ED]/40 hover:text-black font-medium"
                           )}
                         >
                           <div className="flex items-center gap-3 relative z-10 flex-1 min-w-0">
                             <div className={cn(
                               "w-2 h-2 rounded-full transition-all shrink-0",
-                              activeMemberId === member.id ? "bg-blue-500 animate-pulse shadow-[0_0_8px_rgba(59,130,246,0.6)]" : "bg-slate-700 group-hover:bg-slate-500"
+                              activeMemberId === member.id ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" : "bg-[#FDBA74] group-hover:bg-[#EA580C]"
                             )}></div>
                             <span className="font-semibold truncate">{member.name}</span>
                           </div>
@@ -393,8 +399,8 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                             <span className={cn(
                               "text-[10px] font-bold px-2 py-0.5 rounded-full transition-colors",
                               activeMemberId === member.id
-                                ? "bg-blue-500/20 text-blue-400"
-                                : "bg-slate-800/80 text-slate-500 group-hover:bg-slate-700 group-hover:text-slate-300"
+                                ? "bg-orange-500/20 text-orange-500"
+                                : "bg-[#FFF7ED] text-[#EA580C] group-hover:bg-[#FFEDD5] group-hover:text-[#7C2D12]"
                             )}>
                               {member._count.accounts}
                             </span>
@@ -403,20 +409,20 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                                 e.stopPropagation()
                                 handleDeleteMember(member.id, member.name)
                               }}
-                              className="p-1 rounded-md hover:bg-red-500/20 text-slate-600 hover:text-red-400 transition-colors"
+                              className="p-1 rounded-md hover:bg-red-50 text-[#EA580C] hover:text-red-600 transition-colors"
                             >
                               <Trash2 className="w-3.5 h-3.5" />
                             </button>
                           </div>
                           {activeMemberId === member.id && (
-                            <div className="absolute left-0 top-0 w-1 h-full bg-blue-500"></div>
+                            <div className="absolute left-0 top-0 w-1 h-full bg-orange-500"></div>
                           )}
                         </div>
                       ))}
                       {!isSearching && !showAllMembers && hiddenCount > 0 && (
                         <button
                           onClick={() => setShowAllMembers(true)}
-                          className="w-full text-left px-4 py-2.5 rounded-xl text-slate-500 hover:text-slate-300 text-xs font-semibold flex items-center gap-2 hover:bg-slate-800/30 transition-all"
+                          className="w-full text-left px-4 py-2.5 rounded-xl text-[#EA580C] hover:text-[#7C2D12] text-xs font-semibold flex items-center gap-2 hover:bg-[#FFF7ED] transition-all"
                         >
                           <Plus className="w-3.5 h-3.5" />
                           더보기 ({hiddenCount}명)
@@ -425,7 +431,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                       {!isSearching && showAllMembers && filteredMembers.length > LIMIT && (
                         <button
                           onClick={() => setShowAllMembers(false)}
-                          className="w-full text-left px-4 py-2.5 rounded-xl text-slate-500 hover:text-slate-300 text-xs font-semibold flex items-center gap-2 hover:bg-slate-800/30 transition-all"
+                          className="w-full text-left px-4 py-2.5 rounded-xl text-[#EA580C] hover:text-[#7C2D12] text-xs font-semibold flex items-center gap-2 hover:bg-[#FFF7ED] transition-all"
                         >
                           접기
                         </button>
@@ -441,19 +447,19 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
         {/* Main Content Area */}
         <section className="flex-1 space-y-6">
           {!activeMemberId ? (
-            <Card className="h-full min-h-[400px] border-slate-800 bg-slate-900/20 border-dashed flex items-center justify-center rounded-3xl backdrop-blur-sm">
+            <Card className="h-full min-h-[400px] border-[#FFF7ED] bg-white border-dashed flex items-center justify-center rounded-[32px] shadow-sm">
               <div className="text-center space-y-3">
-                <User className="w-12 h-12 text-slate-800 mx-auto" />
-                <p className="text-slate-500 font-medium">관리하실 팀원을 선택해 주세요.</p>
+                <User className="w-12 h-12 text-orange-200 mx-auto" />
+                <p className="text-[#EA580C] font-medium">관리하실 팀원을 선택해 주세요.</p>
               </div>
             </Card>
           ) : (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-xl font-bold flex items-baseline gap-2 tracking-tight transform scale-y-[1.2] text-slate-300">
+                  <h2 className="text-xl font-bold flex items-baseline gap-2 tracking-tight transform scale-y-[1.2] text-[#111827]">
                     {activeMember?.name}
-                    <span className="text-sm text-slate-300" >
+                    <span className="text-sm text-[#4B5563]" >
                       님의 계정 상세
                     </span>
                   </h2>
@@ -461,23 +467,23 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
 
                 <Dialog open={isAccountDialogOpen} onOpenChange={setIsAccountDialogOpen}>
                   <DialogTrigger render={
-                    <Button className="bg-blue-600 hover:bg-blue-500 rounded-xl shadow-lg shadow-blue-900/20 px-6 h-11">
+                    <Button className="bg-gradient-to-r from-[#FF7A6E] to-[#FFA73D] hover:from-[#FF6A5E] hover:to-[#FF972D] text-white border-none rounded-xl shadow-lg shadow-blue-900/20 px-6 h-11">
                       <Plus className="w-4 h-4 mr-2" />
                       계정 추가
                     </Button>
                   } />
-                  <DialogContent className="bg-slate-900 border-slate-800 text-white rounded-2xl shadow-2xl" showCloseButton={false}>
+                  <DialogContent className="bg-white border-[#FFEDD5] text-[#431407] rounded-2xl shadow-2xl" showCloseButton={false}>
                     <DialogHeader>
                       <DialogTitle className="text-xl font-bold">계정 추가</DialogTitle>
                     </DialogHeader>
                     <div className="py-4 space-y-4">
-                      <div className="space-y-2">
-                        <Label className="text-slate-400 text-xs font-semibold uppercase tracking-wider">홈페이지</Label>
-                        <div className="relative group">
-                          <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-blue-500 transition-colors" />
+                      <div className="space-y-2.5">
+                        <Label className="text-sm font-bold text-[#9A3412] tracking-tight ml-1">홈페이지</Label>
+                        <div className="relative group transition-all duration-300 rounded-2xl bg-[#FFF7ED] focus-within:ring-2 focus-within:ring-orange-400/20 focus-within:bg-white focus-within:shadow-sm">
+                          <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors text-[#FB923C] group-focus-within:text-orange-500" />
                           <Input
                             placeholder="예: 아마란스10, ForMe .."
-                            className="pl-10 h-11 bg-slate-950 border-slate-800 focus:ring-blue-500/20"
+                            className="h-14 pl-12 bg-transparent border-none focus-visible:ring-0 text-[#431407] text-base placeholder:text-[#FDBA74]"
                             value={newAccount.siteName}
                             onChange={(e) => {
                               setNewAccount({ ...newAccount, siteName: e.target.value })
@@ -488,13 +494,13 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                           />
                         </div>
                       </div>
-                      <div className="space-y-2">
-                        <Label className="text-slate-400 text-xs font-semibold uppercase tracking-wider">아이디</Label>
-                        <div className="relative group">
-                          <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-blue-500 transition-colors" />
+                      <div className="space-y-2.5">
+                        <Label className="text-sm font-bold text-[#9A3412] tracking-tight ml-1">아이디</Label>
+                        <div className="relative group transition-all duration-300 rounded-2xl bg-[#FFF7ED] focus-within:ring-2 focus-within:ring-orange-400/20 focus-within:bg-white focus-within:shadow-sm">
+                          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors text-[#FB923C] group-focus-within:text-orange-500" />
                           <Input
                             placeholder="아이디 또는 이메일"
-                            className="pl-10 h-11 bg-slate-950 border-slate-800 focus:ring-blue-500/20"
+                            className="h-14 pl-12 bg-transparent border-none focus-visible:ring-0 text-[#431407] text-base placeholder:text-[#FDBA74]"
                             value={newAccount.username}
                             onChange={(e) => {
                               setNewAccount({ ...newAccount, username: e.target.value })
@@ -505,14 +511,14 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                           />
                         </div>
                       </div>
-                      <div className="space-y-2">
-                        <Label className="text-slate-400 text-xs font-semibold uppercase tracking-wider">비밀번호</Label>
-                        <div className="relative group">
-                          <Key className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-blue-500 transition-colors" />
+                      <div className="space-y-2.5">
+                        <Label className="text-sm font-bold text-[#9A3412] tracking-tight ml-1">비밀번호</Label>
+                        <div className="relative group transition-all duration-300 rounded-2xl bg-[#FFF7ED] focus-within:ring-2 focus-within:ring-orange-400/20 focus-within:bg-white focus-within:shadow-sm">
+                          <Key className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors text-[#FB923C] group-focus-within:text-orange-500" />
                           <Input
                             type="password"
                             placeholder="비밀번호 정보"
-                            className="pl-10 h-11 bg-slate-950 border-slate-800 focus:ring-blue-500/20"
+                            className="h-14 pl-12 bg-transparent border-none focus-visible:ring-0 text-[#431407] text-base placeholder:text-[#FDBA74]"
                             value={newAccount.password}
                             onChange={(e) => {
                               setNewAccount({ ...newAccount, password: e.target.value })
@@ -525,68 +531,68 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                       </div>
                     </div>
                     {accountError && (
-                      <div className="mx-4 mt-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
+                      <div className="mx-4 mt-2 p-3 bg-red-50 border border-red-100 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
                         <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
-                        <p className="text-xs font-semibold text-red-400 leading-tight tracking-tight">{accountError}</p>
+                        <p className="text-xs font-semibold text-red-600 leading-tight tracking-tight">{accountError}</p>
                       </div>
                     )}
                     {accountSuccess && (
-                      <div className="mx-4 mt-2 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
+                      <div className="mx-4 mt-2 p-3 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
                         <Shield className="w-4 h-4 text-emerald-500 shrink-0" />
-                        <p className="text-xs font-semibold text-emerald-400 leading-tight tracking-tight">{accountSuccess}</p>
+                        <p className="text-xs font-semibold text-emerald-600 leading-tight tracking-tight">{accountSuccess}</p>
                       </div>
                     )}
                     <DialogFooter className="flex gap-2 sm:gap-2">
-                      <Button variant="ghost" onClick={() => setIsAccountDialogOpen(false)} className="flex-1 rounded-xl h-11 border border-slate-800 hover:bg-slate-800">닫기</Button>
-                      <Button onClick={handleCreateAccount} className="bg-blue-600 hover:bg-blue-500 flex-1 rounded-xl h-11">저장</Button>
+                      <Button variant="ghost" onClick={() => setIsAccountDialogOpen(false)} className="flex-1 rounded-xl h-11 border border-[#FFEDD5] hover:bg-[#FFF7ED]">닫기</Button>
+                      <Button onClick={handleCreateAccount} className="bg-gradient-to-r from-[#FF7A6E] to-[#FFA73D] hover:from-[#FF6A5E] hover:to-[#FF972D] text-white border-none flex-1 rounded-xl h-11">저장</Button>
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
               </div>
 
-              <Card className="border-none bg-slate-900/40 backdrop-blur-sm overflow-hidden rounded-3xl shadow-xl shadow-black/40">
+              <Card className="border-none bg-white/40 backdrop-blur-sm overflow-hidden rounded-3xl shadow-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
                 <CardContent className="p-0">
                   {fetchingAccounts[activeMemberId] ? (
-                    <div className="p-16 text-center text-slate-500 flex flex-col items-center gap-4">
-                      <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
+                    <div className="p-16 text-center text-[#EA580C] flex flex-col items-center gap-4">
+                      <Loader2 className="w-10 h-10 animate-spin text-orange-500" />
                       <p className="font-medium">기밀 정보를 안전하게 불러오는 중...</p>
                     </div>
                   ) : !accountsMap[activeMemberId] || accountsMap[activeMemberId].length === 0 ? (
-                    <div className="p-16 text-center text-slate-500 flex flex-col items-center gap-4">
-                      <Key className="w-12 h-12 text-slate-800" />
+                    <div className="p-16 text-center text-[#EA580C] flex flex-col items-center gap-4">
+                      <Key className="w-12 h-12 text-orange-200" />
                       <div className="space-y-1">
-                        <p className="text-lg font-semibold text-slate-400">등록된 계정이 없습니다.</p>
+                        <p className="text-lg font-semibold text-[#9A3412]">등록된 계정이 없습니다.</p>
                       </div>
                     </div>
                   ) : (
                     <div className="overflow-x-auto">
                       <Table>
-                        <TableHeader className="bg-slate-900/60 transition-colors">
-                          <TableRow className="border-slate-800/10 hover:bg-transparent h-14">
-                            <TableHead className="text-slate-400 font-bold text-center uppercase text-[14px] tracking-widest px-8">홈페이지</TableHead>
-                            <TableHead className="text-slate-400 font-bold text-center uppercase text-[14px] tracking-widest px-6">계정 ID</TableHead>
-                            <TableHead className="text-slate-400 font-bold text-center uppercase text-[14px] tracking-widest px-6">비밀번호</TableHead>
-                            <TableHead className="text-slate-400 font-bold text-center uppercase text-[14px] tracking-widest px-6">관리</TableHead>
+                        <TableHeader className="bg-white/60 transition-colors">
+                          <TableRow className="border-[#FFF7ED] hover:bg-transparent h-14">
+                            <TableHead className="text-[#9A3412] font-bold text-center uppercase text-[14px] tracking-widest px-8">홈페이지</TableHead>
+                            <TableHead className="text-[#9A3412] font-bold text-center uppercase text-[14px] tracking-widest px-6">계정 ID</TableHead>
+                            <TableHead className="text-[#9A3412] font-bold text-center uppercase text-[14px] tracking-widest px-6">비밀번호</TableHead>
+                            <TableHead className="text-[#9A3412] font-bold text-center uppercase text-[14px] tracking-widest px-6">관리</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
                           {accountsMap[activeMemberId].map(account => (
-                            <TableRow key={account.id} className="border-slate-800/30 hover:bg-slate-800/40 transition-all group/row h-20">
-                              <TableCell className="text-slate-300 px-8 text-left">
+                            <TableRow key={account.id} className="border-[#FFF7ED] hover:bg-[#FFF7ED]/40 transition-all group/row h-20">
+                              <TableCell className="text-[#7C2D12] px-8 text-left">
                                 <div className="flex items-center justify-start gap-3">
-                                  <div className="w-8 h-8 rounded-lg bg-blue-600/10 flex items-center justify-center ring-1 ring-blue-500/20 group-hover/row:scale-110 transition-transform">
-                                    <Globe className="w-4 h-4 text-blue-500" />
+                                  <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center ring-1 ring-orange-100 group-hover/row:scale-110 transition-transform">
+                                    <Globe className="w-4 h-4 text-orange-500" />
                                   </div>
                                   <span className="text-sm tracking-tighter inline-block transform scale-y-[1.2] origin-center">{account.siteName}</span>
                                 </div>
                               </TableCell>
                               <TableCell className="px-6 text-center">
                                 <div className="flex items-center justify-center gap-2">
-                                  <span className="text-slate-300 font-medium">{account.username}</span>
+                                  <span className="text-[#7C2D12] font-medium">{account.username}</span>
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="w-8 h-8 text-slate-500 hover:text-blue-400 hover:bg-blue-500/10 rounded-lg group-hover/row:scale-110 transition-transform"
+                                    className="w-8 h-8 text-[#EA580C] hover:text-orange-500 hover:bg-orange-500/10 rounded-lg group-hover/row:scale-110 transition-transform"
                                     onClick={() => copyToClipboard(account.username, '아이디')}
                                   >
                                     <Copy className="w-3.5 h-3.5" />
@@ -597,14 +603,14 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                                 <div className="flex items-center justify-center gap-2">
                                   <span className={cn(
                                     "font-medium inline-block w-32 truncate text-center",
-                                    showPassword[account.id] ? "text-slate-300" : "text-slate-500"
+                                    showPassword[account.id] ? "text-[#7C2D12]" : "text-[#EA580C]"
                                   )}>
                                     {showPassword[account.id] ? account.password : '••••••••'}
                                   </span>
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="w-8 h-8 text-slate-500 hover:text-blue-400 hover:bg-blue-500/10 rounded-lg"
+                                    className="w-8 h-8 text-[#EA580C] hover:text-orange-500 hover:bg-orange-500/10 rounded-lg"
                                     onClick={() => togglePasswordVisibility(account.id)}
                                   >
                                     {showPassword[account.id] ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
@@ -612,7 +618,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="w-8 h-8 text-slate-500 hover:text-blue-400 hover:bg-blue-500/10 rounded-lg"
+                                    className="w-8 h-8 text-[#EA580C] hover:text-orange-500 hover:bg-orange-500/10 rounded-lg"
                                     onClick={() => copyToClipboard(account.password, '비밀번호')}
                                   >
                                     <Copy className="w-3.5 h-3.5" />
@@ -624,7 +630,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="w-10 h-10 text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 rounded-xl transition-all"
+                                    className="w-10 h-10 text-[#9A3412] hover:text-orange-500 hover:bg-orange-500/10 rounded-xl transition-all"
                                     onClick={() => {
                                       setEditingAccount(account)
                                       setIsEditDialogOpen(true)
@@ -635,7 +641,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="w-10 h-10 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-all"
+                                    className="w-10 h-10 text-[#9A3412] hover:text-red-600 hover:bg-red-50 rounded-xl transition-all"
                                     onClick={() => handleDeleteAccount(account.id, activeMemberId)}
                                   >
                                     <Trash2 className="w-4 h-4" />
@@ -657,75 +663,88 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
 
       {/* Edit Account Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="bg-slate-900 border-slate-800 text-white rounded-2xl shadow-2xl" showCloseButton={false}>
+        <DialogContent className="bg-white border-[#FFEDD5] text-[#431407] rounded-2xl shadow-2xl" showCloseButton={false}>
           <DialogHeader>
             <DialogTitle className="text-xl font-bold">계정 정보 수정</DialogTitle>
           </DialogHeader>
           {editingAccount && (
             <div className="py-4 space-y-4">
-              <div className="space-y-2">
-                <Label className="text-slate-400 text-xs font-semibold uppercase tracking-wider">사이트명</Label>
-                <Input
-                  value={editingAccount.siteName}
-                  onChange={(e) => {
-                    setEditingAccount({ ...editingAccount, siteName: e.target.value })
-                    setEditError(null)
-                    setEditSuccess(null)
-                  }}
-                  onKeyDown={(e) => e.key === 'Enter' && handleUpdateAccount()}
-                  className="h-11 bg-slate-950 border-slate-800 focus:ring-blue-500/20"
-                />
+              <div className="space-y-2.5">
+                <Label className="text-sm font-bold text-[#9A3412] tracking-tight ml-1">홈페이지</Label>
+                <div className="relative group transition-all duration-300 rounded-2xl bg-[#FFF7ED] focus-within:ring-2 focus-within:ring-orange-400/20 focus-within:bg-white focus-within:shadow-sm">
+                  <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors text-[#FB923C] group-focus-within:text-orange-500" />
+                  <Input
+                    placeholder="예: 아마란스10, ForMe .."
+                    value={editingAccount.siteName}
+                    onChange={(e) => {
+                      setEditingAccount({ ...editingAccount, siteName: e.target.value })
+                      setEditError(null)
+                      setEditSuccess(null)
+                    }}
+                    onKeyDown={(e) => e.key === 'Enter' && handleUpdateAccount()}
+                    className="h-14 pl-12 bg-transparent border-none focus-visible:ring-0 text-[#431407] text-base placeholder:text-[#FDBA74]"
+                  />
+                </div>
               </div>
-              <div className="space-y-2">
-                <Label className="text-slate-400 text-xs font-semibold uppercase tracking-wider">아이디</Label>
-                <Input
-                  value={editingAccount.username}
-                  onChange={(e) => {
-                    setEditingAccount({ ...editingAccount, username: e.target.value })
-                    setEditError(null)
-                    setEditSuccess(null)
-                  }}
-                  onKeyDown={(e) => e.key === 'Enter' && handleUpdateAccount()}
-                  className="h-11 bg-slate-950 border-slate-800 focus:ring-blue-500/20"
-                />
+              <div className="space-y-2.5">
+                <Label className="text-sm font-bold text-[#9A3412] tracking-tight ml-1">아이디</Label>
+                <div className="relative group transition-all duration-300 rounded-2xl bg-[#FFF7ED] focus-within:ring-2 focus-within:ring-orange-400/20 focus-within:bg-white focus-within:shadow-sm">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors text-[#FB923C] group-focus-within:text-orange-500" />
+                  <Input
+                    placeholder="아이디 또는 이메일"
+                    value={editingAccount.username}
+                    onChange={(e) => {
+                      setEditingAccount({ ...editingAccount, username: e.target.value })
+                      setEditError(null)
+                      setEditSuccess(null)
+                    }}
+                    onKeyDown={(e) => e.key === 'Enter' && handleUpdateAccount()}
+                    className="h-14 pl-12 bg-transparent border-none focus-visible:ring-0 text-[#431407] text-base placeholder:text-[#FDBA74]"
+                  />
+                </div>
               </div>
-              <div className="space-y-2">
-                <Label className="text-slate-400 text-xs font-semibold uppercase tracking-wider">비밀번호</Label>
-                <Input
-                  value={editingAccount.password}
-                  onChange={(e) => {
-                    setEditingAccount({ ...editingAccount, password: e.target.value })
-                    setEditError(null)
-                    setEditSuccess(null)
-                  }}
-                  onKeyDown={(e) => e.key === 'Enter' && handleUpdateAccount()}
-                  className="h-11 bg-slate-950 border-slate-800 focus:ring-blue-500/20"
-                />
+              <div className="space-y-2.5">
+                <Label className="text-sm font-bold text-[#9A3412] tracking-tight ml-1">비밀번호</Label>
+                <div className="relative group transition-all duration-300 rounded-2xl bg-[#FFF7ED] focus-within:ring-2 focus-within:ring-orange-400/20 focus-within:bg-white focus-within:shadow-sm">
+                  <Key className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors text-[#FB923C] group-focus-within:text-orange-500" />
+                  <Input
+                    type="password"
+                    placeholder="비밀번호 정보"
+                    value={editingAccount.password}
+                    onChange={(e) => {
+                      setEditingAccount({ ...editingAccount, password: e.target.value })
+                      setEditError(null)
+                      setEditSuccess(null)
+                    }}
+                    onKeyDown={(e) => e.key === 'Enter' && handleUpdateAccount()}
+                    className="h-14 pl-12 bg-transparent border-none focus-visible:ring-0 text-[#431407] text-base placeholder:text-[#FDBA74]"
+                  />
+                </div>
               </div>
             </div>
           )}
           {editError && (
-            <div className="mx-4 mt-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
+            <div className="mx-4 mt-2 p-3 bg-red-50 border border-red-100 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
               <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
-              <p className="text-xs font-semibold text-red-400 leading-tight tracking-tight">{editError}</p>
+              <p className="text-xs font-semibold text-red-600 leading-tight tracking-tight">{editError}</p>
             </div>
           )}
           {editSuccess && (
-            <div className="mx-4 mt-2 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
+            <div className="mx-4 mt-2 p-3 bg-emerald-50 border border-emerald-100 rounded-xl flex items-center gap-3 animate-in fade-in slide-in-from-top-1">
               <Shield className="w-4 h-4 text-emerald-500 shrink-0" />
-              <p className="text-xs font-semibold text-emerald-400 leading-tight tracking-tight">{editSuccess}</p>
+              <p className="text-xs font-semibold text-emerald-600 leading-tight tracking-tight">{editSuccess}</p>
             </div>
           )}
           <DialogFooter className="flex gap-2 sm:gap-2">
-            <Button variant="ghost" onClick={() => setIsEditDialogOpen(false)} className="flex-1 rounded-xl h-11 border border-slate-800 hover:bg-slate-800">닫기</Button>
-            <Button onClick={handleUpdateAccount} className="bg-blue-600 hover:bg-blue-500 flex-1 h-11 rounded-xl">저장</Button>
+            <Button variant="ghost" onClick={() => setIsEditDialogOpen(false)} className="flex-1 rounded-xl h-11 border border-[#FFEDD5] hover:bg-[#FFF7ED]">닫기</Button>
+            <Button onClick={handleUpdateAccount} className="bg-gradient-to-r from-[#FF7A6E] to-[#FFA73D] hover:from-[#FF6A5E] hover:to-[#FF972D] text-white border-none flex-1 h-11 rounded-xl">저장</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <footer className="py-10 bg-slate-950">
+      <footer className="py-10 bg-[#FDFDFD]">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="text-[12px] text-slate-500 uppercase tracking-[0.1em] font-bold">© 2026 PassVault • 환경팀 계정관리 • 국제학교지원처</p>
+          <p className="text-[12px] text-[#EA580C] uppercase tracking-[0.1em] font-bold">© 2026 PassVault • 환경팀 계정관리 • 국제학교지원처</p>
         </div>
       </footer>
     </div>
