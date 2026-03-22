@@ -304,7 +304,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                 <Dialog open={isMemberDialogOpen} onOpenChange={setIsMemberDialogOpen}>
                   <DialogTrigger render={
                     <Button variant="ghost" size="icon" className="w-8 h-8 text-orange-500 hover:bg-orange-500/10">
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-4 h-4" />추가
                     </Button>
                   } />
                   <DialogContent className="bg-white border-[#FFEDD5] text-[#431407]" showCloseButton={false}>
@@ -385,8 +385,8 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                           className={cn(
                             "w-full text-left px-4 py-3.5 rounded-xl transition-all flex items-center justify-between group relative overflow-hidden focus:outline-none",
                             activeMemberId === member.id
-                              ? "bg-orange-50 text-black shadow-sm ring-1 ring-orange-500/20 font-bold"
-                              : "text-[#1C2434] hover:bg-[#FFF7ED]/40 hover:text-black font-medium"
+                              ? "bg-orange-50 text-black shadow-sm ring-1 ring-orange-500/20"
+                              : "text-[#1C2434] hover:bg-[#FFF7ED]/40 hover:text-black"
                           )}
                         >
                           <div className="flex items-center gap-3 relative z-10 flex-1 min-w-0">
@@ -394,7 +394,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                               "w-2 h-2 rounded-full transition-all shrink-0",
                               activeMemberId === member.id ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" : "bg-[#FDBA74] group-hover:bg-[#EA580C]"
                             )}></div>
-                            <span className="font-semibold truncate">{member.name}</span>
+                            <span className="text-sm font-medium truncate">{member.name}</span>
                           </div>
                           <div className="flex items-center gap-2 relative z-10 shrink-0">
                             <span className={cn(
@@ -570,10 +570,10 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                       <Table>
                         <TableHeader className="bg-[#FFF7ED]/60 border-b-2 border-[#FFEDD5]">
                           <TableRow className="border-none hover:bg-transparent h-14">
-                            <TableHead className="text-[#9A3412] font-black text-center uppercase text-[13px] tracking-[0.2em] px-8 py-4">홈페이지</TableHead>
-                            <TableHead className="text-[#9A3412] font-black text-center uppercase text-[13px] tracking-[0.2em] px-6 py-4">계정 ID</TableHead>
-                            <TableHead className="text-[#9A3412] font-black text-center uppercase text-[13px] tracking-[0.2em] px-6 py-4">비밀번호</TableHead>
-                            <TableHead className="text-[#9A3412] font-black text-center uppercase text-[13px] tracking-[0.2em] px-6 py-4">관리</TableHead>
+                            <TableHead className="text-[#9A3412] text-center uppercase text-[13px] px-8 py-4">홈페이지</TableHead>
+                            <TableHead className="text-[#9A3412] text-center uppercase text-[13px] px-6 py-4">계정 ID</TableHead>
+                            <TableHead className="text-[#9A3412] text-center uppercase text-[13px] px-6 py-4">비밀번호</TableHead>
+                            <TableHead className="text-[#9A3412] text-center uppercase text-[13px] px-6 py-4">관리</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -584,7 +584,7 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                                   <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center ring-1 ring-orange-100 group-hover/row:scale-110 transition-transform">
                                     <Globe className="w-4 h-4 text-orange-500" />
                                   </div>
-                                  <span className="text-sm tracking-tighter inline-block transform scale-y-[1.2] origin-center">{account.siteName}</span>
+                                  <span className="text-sm tracking-tighter inline-block transform origin-center">{account.siteName}</span>
                                 </div>
                               </TableCell>
                               <TableCell className="px-6 text-center">
