@@ -568,23 +568,23 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                   ) : (
                     <div className="overflow-x-auto">
                       <Table>
-                        <TableHeader className="bg-white/60 transition-colors">
-                          <TableRow className="border-[#FFF7ED] hover:bg-transparent h-14">
-                            <TableHead className="text-[#9A3412] font-bold text-center uppercase text-[14px] tracking-widest px-8">홈페이지</TableHead>
-                            <TableHead className="text-[#9A3412] font-bold text-center uppercase text-[14px] tracking-widest px-6">계정 ID</TableHead>
-                            <TableHead className="text-[#9A3412] font-bold text-center uppercase text-[14px] tracking-widest px-6">비밀번호</TableHead>
-                            <TableHead className="text-[#9A3412] font-bold text-center uppercase text-[14px] tracking-widest px-6">관리</TableHead>
+                        <TableHeader className="bg-[#FFF7ED]/60 border-b-2 border-[#FFEDD5]">
+                          <TableRow className="border-none hover:bg-transparent h-14">
+                            <TableHead className="text-[#9A3412] font-black text-center uppercase text-[13px] tracking-[0.2em] px-8 py-4">홈페이지</TableHead>
+                            <TableHead className="text-[#9A3412] font-black text-center uppercase text-[13px] tracking-[0.2em] px-6 py-4">계정 ID</TableHead>
+                            <TableHead className="text-[#9A3412] font-black text-center uppercase text-[13px] tracking-[0.2em] px-6 py-4">비밀번호</TableHead>
+                            <TableHead className="text-[#9A3412] font-black text-center uppercase text-[13px] tracking-[0.2em] px-6 py-4">관리</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
                           {accountsMap[activeMemberId].map(account => (
-                            <TableRow key={account.id} className="border-[#FFF7ED] hover:bg-[#FFF7ED]/40 transition-all group/row h-20">
+                            <TableRow key={account.id} className="border-b border-dashed border-gray-300 last:border-0 hover:bg-[#FFF7ED]/40 transition-all group/row h-20">
                               <TableCell className="text-[#7C2D12] px-8 text-left">
                                 <div className="flex items-center justify-start gap-3">
-                                  <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center ring-1 ring-blue-100 group-hover/row:scale-110 transition-transform">
-                                    <Globe className="w-4 h-4 text-blue-500" />
+                                  <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center ring-1 ring-orange-100 group-hover/row:scale-110 transition-transform">
+                                    <Globe className="w-4 h-4 text-orange-500" />
                                   </div>
-                                  <span className="text-sm font-semibold text-blue-600 tracking-tighter inline-block transform scale-y-[1.2] origin-center">{account.siteName}</span>
+                                  <span className="text-sm tracking-tighter inline-block transform scale-y-[1.2] origin-center">{account.siteName}</span>
                                 </div>
                               </TableCell>
                               <TableCell className="px-6 text-center">
