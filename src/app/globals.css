@@ -1,11 +1,3 @@
-@font-face {
-    font-family: 'Paperozi';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2');
-    font-weight: 100 900; /* Broaden weight range for compatibility */
-    font-style: normal;
-    font-display: swap;
-}
-
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -15,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: 'Paperozi', sans-serif;
+  --font-sans: var(--font-noto-sans-kr), sans-serif;
   --font-mono: var(--font-geist-mono);
-  --font-heading: 'Paperozi', sans-serif;
+  --font-heading: var(--font-noto-sans-kr), sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -128,13 +120,13 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    font-family: 'Paperozi', sans-serif;
+    font-family: var(--font-noto-sans-kr), sans-serif;
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Paperozi', sans-serif;
+    font-family: var(--font-noto-sans-kr), sans-serif;
   }
   html {
-    font-family: 'Paperozi', sans-serif;
+    font-family: var(--font-noto-sans-kr), sans-serif;
   }
 }
