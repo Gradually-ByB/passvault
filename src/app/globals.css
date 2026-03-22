@@ -1,7 +1,8 @@
 @font-face {
     font-family: 'Paperozi';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2');
-    font-weight: 200;
+    font-weight: 100 900; /* Broaden weight range for compatibility */
+    font-style: normal;
     font-display: swap;
 }
 
@@ -127,6 +128,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    font-family: 'Paperozi', sans-serif;
   }
   body {
     @apply bg-background text-foreground;
