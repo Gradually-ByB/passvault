@@ -581,10 +581,10 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                             <TableRow key={account.id} className="border-[#FFF7ED] hover:bg-[#FFF7ED]/40 transition-all group/row h-20">
                               <TableCell className="text-[#7C2D12] px-8 text-left">
                                 <div className="flex items-center justify-start gap-3">
-                                  <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center ring-1 ring-orange-100 group-hover/row:scale-110 transition-transform">
-                                    <Globe className="w-4 h-4 text-orange-500" />
+                                  <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center ring-1 ring-blue-100 group-hover/row:scale-110 transition-transform">
+                                    <Globe className="w-4 h-4 text-blue-500" />
                                   </div>
-                                  <span className="text-sm tracking-tighter inline-block transform scale-y-[1.2] origin-center">{account.siteName}</span>
+                                  <span className="text-sm font-semibold text-blue-600 tracking-tighter inline-block transform scale-y-[1.2] origin-center">{account.siteName}</span>
                                 </div>
                               </TableCell>
                               <TableCell className="px-6 text-center">
