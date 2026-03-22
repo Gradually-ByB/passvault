@@ -303,8 +303,9 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
                 <span className="text-sm font-medium text-[#7C2D12]">팀원 목록</span>
                 <Dialog open={isMemberDialogOpen} onOpenChange={setIsMemberDialogOpen}>
                   <DialogTrigger render={
-                    <Button variant="ghost" size="icon" className="w-8 h-8 text-orange-500 hover:bg-orange-500/10">
-                      <Plus className="w-4 h-4" />추가
+                    <Button variant="ghost" className="h-8 px-2 text-orange-500 hover:bg-orange-500/10 flex items-center gap-1 text-sm font-medium">
+                      <Plus className="w-3.5 h-3.5" />
+                      추가
                     </Button>
                   } />
                   <DialogContent className="bg-white border-[#FFEDD5] text-[#431407]" showCloseButton={false}>
