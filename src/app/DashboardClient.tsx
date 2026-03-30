@@ -276,12 +276,12 @@ export default function DashboardClient({ initialMembers, initialAccounts }: Das
             <div className="flex items-center justify-center">
               <Image src="/logo.png" alt="Logo" width={60} height={60} className="object-contain" priority />
             </div>
-            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-rose-400">
+            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-rose-400 scale-y-[1.2]">
               환경팀 계정 관리
             </h1>
           </div>
           <Button variant="ghost" size="sm" onClick={handleLogout} className="text-[#9A3412] hover:text-[#431407] hover:bg-[#FFF7ED]">
-            <LogOut className="w-4 h-4 mr-2" />
+            <LogOut className="w-4 h-4" />
             로그아웃
           </Button>
         </div>
